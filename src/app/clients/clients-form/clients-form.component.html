@@ -1,0 +1,60 @@
+<div class="container">
+    <h1 class="mt-4">Adicionar aluno</h1>
+    <div class="alert alert-secondary" role="alert">
+        Informações pessoais
+    </div>
+
+    <div class="row mt-3">
+        <div class="col-md-12" *ngIf="success">
+            <div class="alert alert-success" role="alert">
+                Aluno cadastrado/atualizado com sucesso.
+            </div>
+        </div>
+
+        <div class="col-md-12" *ngFor="let error of errors">
+            <div class="alert alert-danger" role="alert">
+                {{error.error}}
+            </div>
+        </div>
+    </div>
+
+    <form #clientsForm="ngForm" (ngSubmit)="onSubmit()" method="post">
+        <div class="row mb-3" *ngIf="client.id">
+            <div class="col-md-6">
+                <label for="" class="form-label">ID:</label>
+                <input type="text" class="form-control" [ngModel]="client.id" name="id" disabled>
+            </div>
+            <div class="col-md-6">
+                <label for="" class="form-label">Perfil:</label>
+                <input type="text" class="form-control" [(value)]="client.typeUser" value="CLIENT" name="typeUser" disabled>
+            </div>
+        </div>
+    
+        <div class="row mb-3">
+            <div class="col-6">
+                <label for="" class="form-label">Nome: *</label>
+                <input type="text" class="form-control" [(ngModel)]="client.name" name="name">
+            </div>
+            <div class="col-6">
+                <label for="" class="form-label">Data de aniversário:</label>
+                <input type="date" class="form-control" [(ngModel)]="client.birthDate" name="birthDate">
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-12 mt-2">
+                <label for="" class="form-label">Email: *</label>
+                <input type="email" class="form-control" [(ngModel)]="client.email" name="email">            
+            </div>
+        </div>
+        <div class="row">
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                <button type="button" class="btn btn-danger me-2">
+                    <i class="fa fa-ban"></i> Cancelar
+                </button>
+                <button type="submit" class="btn btn-success">
+                    <i class="fa fa-save"></i> Salvar
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
