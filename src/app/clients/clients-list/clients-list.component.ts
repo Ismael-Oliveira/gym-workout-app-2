@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { ClientsService } from 'src/app/services/clients.service';
+import { Client } from '../clients';
 
 @Component({
   selector: 'app-clients-list',
@@ -10,7 +11,9 @@ import { ClientsService } from 'src/app/services/clients.service';
 })
 export class ClientsListComponent implements OnInit {
 
-  clients: any = [];
+  clients: Client[] = [];
+  errorMessageDeleteClient: String = "";
+  selectedClient: Client;
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject<any>();
 
@@ -47,13 +50,28 @@ export class ClientsListComponent implements OnInit {
   }
 
   getAllClients(): void {
-    this.service
-    .getClients()
-    .subscribe((response: any) => {
-      this.clients = response;
-      // initiate our data table
-      this.dtTrigger.next(true);
-    });
+    this.service.getClients()
+          .subscribe((response: any) => {
+            this.clients = response.content;
+            // initiate our data table
+            this.dtTrigger.next(true);
+          });
+  }
+  
+  deleteClient(id) {
+    this.service.deleteClient(id)
+          .subscribe({
+            next: () => {
+              this.dtTrigger.unsubscribe();
+              this.ngOnInit();
+            },
+            error: () => {
+              this.errorMessageDeleteClient = "Erro ao tentar deletar este aluno(a).";
+            }
+          });
   }
 
+  prepareToDeleteClient(client) {
+    this.selectedClient = client;
+  }
 }

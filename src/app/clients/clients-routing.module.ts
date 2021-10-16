@@ -6,6 +6,7 @@ import { ClientsListComponent } from './clients-list/clients-list.component';
 const routes: Routes = [
   { path: "clients-list", component: ClientsListComponent},
   { path: "clients-form", component: ClientsFormComponent},
+  { path: "clients-form/:id", component: ClientsFormComponent},
 ];
 @NgModule({
   imports: [RouterModule.forChild(routes)],

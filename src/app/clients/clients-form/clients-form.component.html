@@ -37,7 +37,7 @@
             </div>
             <div class="col-6">
                 <label for="" class="form-label">Data de aniversário:</label>
-                <input type="date" class="form-control" [(ngModel)]="client.birthDate" name="birthDate">
+                <input type="date" class="form-control" [(ngModel)]="client.birthDate" name="birthDate" [disabled]="client.id">
             </div>
         </div>
         <div class="row mb-3">
@@ -48,12 +48,22 @@
         </div>
         <div class="row">
             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                <button type="button" class="btn btn-danger me-2">
-                    <i class="fa fa-ban"></i> Cancelar
-                </button>
-                <button type="submit" class="btn btn-success">
-                    <i class="fa fa-save"></i> Salvar
-                </button>
+                <div class="save" *ngIf="!client.id">
+                    <button type="button" class="btn btn-danger me-2" (click)="cancelCreateClients()">
+                        <i class="fas fa-ban"></i> Cancelar
+                    </button>
+                    <button type="submit" class="btn btn-success" >
+                        <i class="fa fa-save"></i> Salvar
+                    </button>
+                </div>
+                <div class="update" *ngIf="client.id">
+                    <button type="button" class="btn btn-danger me-2" (click)="cancelCreateClients()">
+                        <i class="fa fa-arrow-left"></i> Voltar
+                    </button>
+                    <button type="submit" class="btn btn-success" >
+                        <i class="fas fa-sync"></i> Atualizar
+                    </button>
+                </div>
             </div>
         </div>
     </form>
