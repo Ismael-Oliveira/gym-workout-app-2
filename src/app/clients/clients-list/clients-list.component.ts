@@ -46,7 +46,7 @@ export class ClientsListComponent implements OnInit {
   }
 
   newClient() {
-    this.router.navigate(["clients-form"]);
+    this.router.navigate(["/clients/form"]);
   }
 
   getAllClients(): void {

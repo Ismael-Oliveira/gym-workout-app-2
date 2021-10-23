@@ -14,6 +14,9 @@ export class ClientsFormComponent implements OnInit {
 
   client: Client;
   success: boolean = false;
+  controlHideMessageSuccess = {
+    success: false
+  }
   errors: string[] = [];
   id: number;
 
@@ -50,20 +53,22 @@ export class ClientsFormComponent implements OnInit {
   }
   
   cancelCreateClients() {
-    this.router.navigate(["clients-list"]);
+    this.router.navigate(["/clients/list"]);
   }
 
   private saveClient() {
     this.service.save(this.client)
           .subscribe({
             next: (response) => {
-              this.success = true;
+              this.controlHideMessageSuccess.success = true;
               this.errors = [];
               this.client = response;
-              this.hideMessageSuccess();
+              this.util.hideMessageSuccess(3000, this.controlHideMessageSuccess, () => {
+                this.ngOnInit();
+              });
             },
             error: (errorResponse) => {
-              this.success = false;
+              this.controlHideMessageSuccess.success = false;
               this.errors = errorResponse.error;
             }
           });
@@ -73,22 +78,17 @@ export class ClientsFormComponent implements OnInit {
     this.service.update(this.client)
           .subscribe({
             next: (response) => {
-              this.success = true;
+              this.controlHideMessageSuccess.success = true;
               this.errors = [];
               this.client = response;
-              this.hideMessageSuccess();
+              this.util.hideMessageSuccess(3000, this.controlHideMessageSuccess, () => {
+                this.ngOnInit();
+              });            
             },
             error: (errorResponse) => {
-              this.success = false;
+              this.controlHideMessageSuccess.success = false;
               this.errors = errorResponse.error;
             }
           });
-  }
-
-  private hideMessageSuccess() {
-    setTimeout(() => {
-      this.success = false;
-      this.ngOnInit();
-    }, 3000)
   }
 }
