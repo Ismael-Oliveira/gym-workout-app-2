@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-
+import { AuthService } from '../services/auth.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -10,13 +10,20 @@ export class LoginComponent {
 
   email: string;
   password: string;
-  errorLogin: boolean;
+  errors: string[];
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private auth: AuthService) { }
 
   onSubmit() {
-    console.log("user:"+this.email+" pass: "+this.password);
-    this.router.navigateByUrl("/home");
+    this.auth
+          .login(this.email, this.password)
+          .subscribe( response => {
+            const access_token = JSON.stringify(response);
+            localStorage.setItem("access_token", access_token);
+            this.router.navigateByUrl("/home");
+          }, error => {
+            this.errors = ["Usuário e/ou senha incorreto(s)."];
+          })
   }
 
 }
