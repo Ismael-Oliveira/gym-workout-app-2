@@ -1,0 +1,74 @@
+<div class="container">
+    <div *ngIf="!equipment.id">
+        <h1 class="mt-4">Adicionar equipamento</h1>        
+    </div>
+    <div *ngIf="equipment.id">
+        <h1 class="mt-4">Atualizar condição equipamento</h1>        
+    </div>
+
+    <div class="alert alert-secondary" role="alert">
+        Informações do equipamento
+    </div>
+
+    <div class="row mt-3">
+        <div class="col-md-12" *ngIf="controlHideMessageSuccess.success">
+            <div class="alert alert-success" role="alert">
+                Equipamento cadastrado/atualizado com sucesso.
+            </div>
+        </div>
+
+        <div class="col-md-12" *ngFor="let error of errors">
+            <div class="alert alert-danger" role="alert">
+                {{error.error}}
+            </div>
+        </div>
+    </div>
+
+    <form #clientsForm="ngForm" (ngSubmit)="onSubmit()" method="post">
+        <div class="row mb-3" >
+            <div class="col-md-6">
+                <label for="" class="form-label">Nome: *</label>
+                <input type="text" class="form-control" [(ngModel)]="equipment.name" name="name" [disabled]="equipment.id">
+            </div>
+            <div class="col-md-6">
+                <label for="" class="form-label">Condição:</label>
+                <select class="form-control" [ngModelOptions]="{standalone: true}"
+                    [(ngModel)]="equipment.statusEquipment"
+                    [disabled]="!equipment.id">
+                    <option value="AVAILABLE">Disponível</option>
+                    <option value="UNAVAILABLE">Indisponível</option>
+                    <option value="MAINTENANCE">Manutenção</option>
+                </select>
+            </div>
+        </div>
+    
+        <div class="row mb-3">
+            <div class="col-6">
+                <label for="" class="form-label">Número: *</label>
+                <input type="number" class="form-control" [(ngModel)]="equipment.code" name="code" [disabled]="equipment.id">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                <div class="save" *ngIf="!equipment.id">
+                    <button type="button" class="btn btn-danger me-2" (click)="cancelCreateEquipments()">
+                        <i class="fas fa-ban"></i> Cancelar
+                    </button>
+                    <button type="submit" class="btn btn-success" >
+                        <i class="fa fa-save"></i> Salvar
+                    </button>
+                </div>
+                <div class="update" *ngIf="equipment.id">
+                    <button type="button" class="btn btn-danger me-2" (click)="cancelCreateEquipments()">
+                        <i class="fa fa-arrow-left"></i> Voltar
+                    </button>
+                    <button type="submit" class="btn btn-success" >
+                        <i class="fas fa-sync"></i> Atualizar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+

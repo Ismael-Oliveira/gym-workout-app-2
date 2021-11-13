@@ -17,7 +17,7 @@ export class ClientsFormComponent implements OnInit {
   controlHideMessageSuccess = {
     success: false
   }
-  errors: string[] = [];
+  errors: Object[] = [];
   id: number;
 
   constructor(private service: ClientsService, private util: UtilService, private router: Router, private activatedRoute: ActivatedRoute) {
@@ -69,6 +69,10 @@ export class ClientsFormComponent implements OnInit {
             },
             error: (errorResponse) => {
               this.controlHideMessageSuccess.success = false;
+              if (errorResponse.error.status == 400) {
+                this.errors.push({error: errorResponse.error.message});
+                return;
+              }
               this.errors = errorResponse.error;
             }
           });

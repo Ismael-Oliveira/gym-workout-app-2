@@ -13,7 +13,8 @@ import { LayoutComponent } from './layout/layout.component';
 import { ClientsService } from './services/clients.service';
 import { AuthService } from './services/auth.service';
 import { TokenInterceptor } from './token.interceptor';
-
+import { EquipmentsFormComponent } from './equipments/equipments-form/equipments-form.component';
+import { EquipmentsModule } from './equipments/equipments.module';
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,7 +28,9 @@ import { TokenInterceptor } from './token.interceptor';
     FormsModule,
     AppRoutingModule,
     TemplateModule,
-    ClientsModule
+    ClientsModule,
+    EquipmentsModule
+    
   ],
   providers: [
     ClientsService,

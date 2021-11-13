@@ -1,0 +1,71 @@
+<div class="container">
+    <h1 class="mt-4">Equipamentos</h1>
+    <div class="alert alert-secondary" role="alert">
+        Consulta
+    </div>
+
+    <div class="card mb-4">
+        <div class="card-header">
+            <div class="row">
+                <div class="col-md-2">
+                    <button class="btn btn-warning" (click)="newEquipment()">
+                        <i class="fas fa-plus me-1"></i>
+                        Novo
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <table class="table table-bordered table-striped table-hover pt-3 pb-3" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+                <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Condição</th>
+                    <th>Adquirido em</th>
+                    <th>Numero de série</th>
+                    <th>Tempo de uso (anos)</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let equipment of equipments">
+                    <td>{{ equipment.name }}</td>
+                    <td>{{ equipment.statusEquipment }}</td>
+                    <td>{{ equipment.date }}</td>
+                    <td>{{ equipment.code }}</td>
+                    <td>{{ equipment.timeUse }}</td>
+                    <th>
+                        <div class="d-grid gap-1 d-md-flex justify-content-md-center">
+                            <button class="btn btn-primary" routerLink="/equipments/form/{{equipment.id}}">
+                                <i class="far fa-edit"></i>
+                            </button>
+                            <!-- <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal" (click)="">
+                                <i class="far fa-trash-alt"></i>
+                            </button> -->
+                        </div>
+                    </th>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!-- <div class="modal fade" id="deleteModal" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Confirmação</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" *ngIf="selectedClient">
+                    Deseja excluir o(a) aluno(a) {{selectedClient.name}}.
+                </div>
+                <div class="modal-footer">
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <button type="button" class="btn btn-success me-md-2" data-bs-dismiss="modal" (click)="deleteClient(selectedClient.id)">Confirma</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> -->
+</div>
