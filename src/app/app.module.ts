@@ -13,8 +13,9 @@ import { LayoutComponent } from './layout/layout.component';
 import { ClientsService } from './services/clients.service';
 import { AuthService } from './services/auth.service';
 import { TokenInterceptor } from './token.interceptor';
-import { EquipmentsFormComponent } from './equipments/equipments-form/equipments-form.component';
 import { EquipmentsModule } from './equipments/equipments.module';
+import { PersonalsModule } from './personal/personals.module';
+import { PersonalsService } from './services/personals.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,11 +30,12 @@ import { EquipmentsModule } from './equipments/equipments.module';
     AppRoutingModule,
     TemplateModule,
     ClientsModule,
-    EquipmentsModule
-    
+    EquipmentsModule,
+    PersonalsModule
   ],
   providers: [
     ClientsService,
+    PersonalsService,
     AuthService,
     {
       provide: HTTP_INTERCEPTORS,

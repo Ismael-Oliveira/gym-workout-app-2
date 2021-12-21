@@ -1,9 +1,9 @@
 <div class="container">
-    <div *ngIf="client.id">
-        <h1 class="mt-4">Atualizar aluno</h1>
+    <div *ngIf="personal.id">
+        <h1 class="mt-4">Atualizar Personal</h1>
     </div>
-    <div *ngIf="!client.id">
-        <h1 class="mt-4">Adicionar aluno</h1>
+    <div *ngIf="!personal.id">
+        <h1 class="mt-4">Adicionar Personal</h1>
     </div>
     <div class="alert alert-secondary" role="alert">
         Informações pessoais
@@ -12,7 +12,7 @@
     <div class="row mt-3">
         <div class="col-md-12" *ngIf="controlHideMessageSuccess.success">
             <div class="alert alert-success" role="alert">
-                Aluno cadastrado/atualizado com sucesso.
+                Personal cadastrado/atualizado com sucesso.
             </div>
         </div>
 
@@ -23,41 +23,41 @@
         </div>
     </div>
 
-    <form #clientsForm="ngForm" (ngSubmit)="onSubmit()" method="post">
-        <div class="row mb-3" *ngIf="client.id">
+    <form #personalsForm="ngForm" (ngSubmit)="onSubmit()" method="post">
+        <div class="row mb-3" *ngIf="personal.id">
             <div class="col-md-6">
                 <label for="" class="form-label">ID:</label>
-                <input type="text" class="form-control" [ngModel]="client.id" name="id" disabled>
+                <input type="text" class="form-control" [ngModel]="personal.id" name="id" disabled>
             </div>
             <div class="col-md-6">
                 <label for="" class="form-label">Perfil:</label>
-                <input type="text" class="form-control" [(value)]="client.typeUser" value="CLIENT" name="typeUser" disabled>
+                <input type="text" class="form-control" [(value)]="personal.typeUser" value="PERSONAL" name="typeUser" disabled>
             </div>
         </div>
     
         <div class="row mb-3">
             <div class="col-6">
                 <label for="" class="form-label">Nome: *</label>
-                <input type="text" class="form-control" [(ngModel)]="client.name" name="name">
+                <input type="text" class="form-control" [(ngModel)]="personal.name" name="name">
             </div>
-            <div class="col-6" *ngIf="!client.id">
+            <div class="col-6" *ngIf="!personal.id">
                 <label for="" class="form-label">Data de aniversário:</label>
-                <input type="date" class="form-control" [(ngModel)]="client.birthDate" name="birthDate">
+                <input type="date" class="form-control" [(ngModel)]="personal.birthDate" name="birthDate">
             </div>
-            <div class="col-6" *ngIf="client.id">
+            <div class="col-6" *ngIf="personal.id">
                 <label for="" class="form-label">Data de aniversário:</label>
-                <input type="text" class="form-control" [(ngModel)]="client.birthDate" name="birthDate" [disabled]="client.id">
+                <input type="text" class="form-control" [(ngModel)]="personal.birthDate" name="birthDate" [disabled]="personal.id">
             </div>
         </div>
         <div class="row mb-3">
             <div class="col-12 mt-2">
                 <label for="" class="form-label">Email: *</label>
-                <input type="email" class="form-control" [(ngModel)]="client.email" name="email">            
+                <input type="email" class="form-control" [(ngModel)]="personal.email" name="email">            
             </div>
         </div>
         <div class="row">
             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                <div class="save" *ngIf="!client.id">
+                <div class="save" *ngIf="!personal.id">
                     <button type="button" class="btn btn-danger me-2" (click)="cancelCreateClients()">
                         <i class="fas fa-ban"></i> Cancelar
                     </button>
@@ -65,7 +65,7 @@
                         <i class="fa fa-save"></i> Salvar
                     </button>
                 </div>
-                <div class="update" *ngIf="client.id">
+                <div class="update" *ngIf="personal.id">
                     <button type="button" class="btn btn-danger me-2" (click)="cancelCreateClients()">
                         <i class="fa fa-arrow-left"></i> Voltar
                     </button>
@@ -77,3 +77,4 @@
         </div>
     </form>
 </div>
+
