@@ -6,15 +6,15 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
-import { ClientsModule } from './clients/clients.module';
+import { ClientsModule } from './admin/clients/clients.module';
 import { LoginComponent } from './login/login.component';
 import { FormsModule } from '@angular/forms';
 import { LayoutComponent } from './layout/layout.component';
 import { ClientsService } from './services/clients.service';
 import { AuthService } from './services/auth.service';
 import { TokenInterceptor } from './token.interceptor';
-import { EquipmentsModule } from './equipments/equipments.module';
-import { PersonalsModule } from './personal/personals.module';
+import { EquipmentsModule } from './admin/equipments/equipments.module';
+import { PersonalsModule } from './admin/personals/personals.module';
 import { PersonalsService } from './services/personals.service';
 @NgModule({
   declarations: [
