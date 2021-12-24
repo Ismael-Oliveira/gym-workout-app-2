@@ -16,6 +16,8 @@ import { TokenInterceptor } from './token.interceptor';
 import { EquipmentsModule } from './admin/equipments/equipments.module';
 import { PersonalsModule } from './admin/personals/personals.module';
 import { PersonalsService } from './services/personals.service';
+import { PupilsComponent } from './client/pupils/pupils.component';
+import { PupilsModule } from './client/pupils.module';
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,7 +33,8 @@ import { PersonalsService } from './services/personals.service';
     TemplateModule,
     ClientsModule,
     EquipmentsModule,
-    PersonalsModule
+    PersonalsModule,
+    PupilsModule
   ],
   providers: [
     ClientsService,
