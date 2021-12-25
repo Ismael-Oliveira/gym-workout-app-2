@@ -8,8 +8,7 @@ const routes: Routes = [
   {path: "personal-equipment", component: LayoutComponent, children: [
     
     { path: "list", component: PersonalEquipmentsComponent},
-    { path: "form", component: PersonalEquipmentsFormComponent},
-    // { path: "form/:id", component: PersonalsFormComponent},
+    { path: "form/:id", component: PersonalEquipmentsFormComponent},
     { path: "", redirectTo: "/personal-equipment/list", pathMatch: "full"}
   
   ]}

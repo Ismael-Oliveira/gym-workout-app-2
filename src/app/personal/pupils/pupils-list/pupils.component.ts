@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { Client } from 'src/app/admin/clients/clients';
+import { Constants } from 'src/app/constants';
 import { ClientsService } from 'src/app/services/clients.service';
 
 @Component({
@@ -21,24 +22,7 @@ export class PupilsComponent implements OnInit {
 
   ngOnInit() {
     this.getAllClients();
-    this.dtOptions = {
-      dom: '<"top"B>rt<"bottom"f>rt<"bottom"lp><"clear">',
-      lengthMenu: [5, 10, 25, 50, 100],
-      pagingType: 'full_numbers',
-      processing: true,
-      language: {
-        search: "Pesquisar",
-        emptyTable: "Sem dados disponíveis.",
-        lengthMenu: "Exibindo _MENU_ entradas",
-        info: "Exibindo de _START_ até _END_, contém: _TOTAL_ entradas",
-        paginate: {
-          first:      "Primeiro",
-          last:       "Ultimo",
-          next:       "Próximo",
-          previous:   "Anterior"
-        },
-      }
-    };
+    this.dtOptions = Constants.CONFIG_DATA_TABLES;
   }
   
   ngOnDestroy(): void {
