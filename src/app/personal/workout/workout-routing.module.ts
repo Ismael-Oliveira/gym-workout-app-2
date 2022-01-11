@@ -9,8 +9,8 @@ const routes: Routes = [
     
     { path: "list", component: WorkoutListComponent},
     { path: "form", component: WorkoutFormComponent},
-    // { path: "form/:id", component: PersonalsFormComponent},
-    { path: "", redirectTo: "/personal-category/list", pathMatch: "full"}
+    { path: "form/:id", component: WorkoutFormComponent},
+    { path: "", redirectTo: "/personal-workout/list", pathMatch: "full"}
   
   ]}
 ];

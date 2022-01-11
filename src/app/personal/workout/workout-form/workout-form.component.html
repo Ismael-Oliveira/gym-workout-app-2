@@ -1,1 +1,84 @@
-<p>workout-form works!</p>
+<div class="container">
+    <div *ngIf="exercise.id">
+        <h1 class="mt-4">Atualizar Exercício</h1>        
+    </div>
+
+    <div *ngIf="!exercise.id">
+        <h1 class="mt-4">Adicionar Exercício</h1>        
+    </div>
+
+    <div class="alert alert-secondary" role="alert">
+        Informações do exercício
+    </div>
+
+    <div class="row mt-3">
+        <div class="col-md-12" *ngIf="controlHideMessageSuccess.success">
+            <div class="alert alert-success" role="alert">
+                Exercício adicionado/atualizado com sucesso.
+            </div>
+        </div>
+
+        <div class="col-md-12" *ngFor="let error of errors">
+            <div class="alert alert-danger" role="alert">
+                {{error.error}}
+            </div>
+        </div>
+    </div>
+
+    <form #clientsForm="ngForm" (ngSubmit)="onSubmit()" method="post">
+        <div class="row mb-3" >
+            <div class="col-md-6">
+                <label for="" class="form-label">Nome: *</label>
+                <input type="text" class="form-control" [(ngModel)]="exercise.nameExercise" name="nameExercise">
+            </div>
+            <div class="col-md-6">
+                <label for="" class="form-label">Nº de séries</label>
+                <input type="text" class="form-control" [(ngModel)]="exercise.series" name="series">
+            </div>
+        </div>
+
+        <div class="row mb-3" >
+            <div class="col-md-6">
+                <label for="" class="form-label">Repetições</label>
+                <input type="text" class="form-control" [(ngModel)]="exercise.loop" name="loop">
+            </div>
+            <div class="col-md-6">
+                <label for="" class="form-label">Carga</label>
+                <input type="text" class="form-control" [(ngModel)]="exercise.weight" name="weight">
+            </div>
+        </div>
+
+        <div class="row mb-3" *ngIf="!exercise.id">
+            <div class="col-md-3">
+                <label for="" class="form-label">Categorias:</label>
+                <select class="form-control" [ngModelOptions]="{standalone: true}"
+                    [(ngModel)]="category.name">
+                    <option value="" [disabled]="true">Vazio</option>
+                    <option *ngFor="let cat of categories" value="{{cat.name}}">{{cat.name}}</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                <div class="update" *ngIf="exercise.id">
+                    <button type="button" class="btn btn-danger me-2" (click)="cancelCreateExercise()">
+                        <i class="fa fa-arrow-left"></i> Voltar
+                    </button>
+                    <button type="submit" class="btn btn-success" >
+                        <i class="fas fa-sync"></i> Atualizar
+                    </button>
+                </div>
+                <div class="add" *ngIf="!exercise.id">
+                    <button type="button" class="btn btn-danger me-2" (click)="cancelCreateExercise()">
+                        <i class="fa fa-arrow-left"></i> Voltar
+                    </button>
+                    <button type="submit" class="btn btn-success" >
+                        <i class="fa fa-save"></i> Salvar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+

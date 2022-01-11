@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
+import { Constants } from 'src/app/constants';
+import { ExercisesService } from 'src/app/services/exercises.service';
+import { Exercise } from '../exercise';
 
 @Component({
   selector: 'app-workout-list',
@@ -9,38 +12,51 @@ import { Subject } from 'rxjs';
 })
 export class WorkoutListComponent implements OnInit {
 
+  exercises: Exercise[] = [];
+  errorMessageDeleteExercise: String = "";
+  selectedExercise: Exercise;
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject<any>();
 
-  constructor(private router: Router) { }
+  constructor(private service: ExercisesService, private router: Router) { }
 
   ngOnInit() {
-    this.dtOptions = {
-      dom: '<"top"B>rt<"bottom"f>rt<"bottom"lp><"clear">',
-      lengthMenu: [5, 10, 25, 50, 100],
-      pagingType: 'full_numbers',
-      processing: true,
-      language: {
-        search: "Pesquisar",
-        emptyTable: "Sem dados disponíveis.",
-        lengthMenu: "Exibindo _MENU_ entradas",
-        info: "Exibindo de _START_ até _END_, contém: _TOTAL_ entradas",
-        paginate: {
-          first:      "Primeiro",
-          last:       "Ultimo",
-          next:       "Próximo",
-          previous:   "Anterior"
-        },
-      }
-    };
+    this.getAllExercises();
+    this.dtOptions = Constants.CONFIG_DATA_TABLES;
   }
   
   ngOnDestroy(): void {
     this.dtTrigger.unsubscribe();
   }
 
-  newClient() {
+  newExercise() {
     this.router.navigate(["/personal-workout/form"]);
+  }
+
+  getAllExercises(): void {
+    this.service.getExercises()
+          .subscribe((response: any) => {
+            this.exercises = response.content;
+            // initiate our data table
+            this.dtTrigger.next(true);
+          });
+  }
+
+  deleteExercise(id) {
+    this.service.deleteExercise(id)
+          .subscribe({
+            next: () => {
+              this.dtTrigger.unsubscribe();
+              this.ngOnInit();
+            },
+            error: () => {
+              this.errorMessageDeleteExercise = "Erro ao tentar deletar este exercício.";
+            }
+          });
+  }
+
+  prepareToDeleteExercise(exercise) {
+    this.selectedExercise = exercise;
   }
 
 }

@@ -9,7 +9,7 @@ const routes: Routes = [
     
     { path: "list", component: CategoryListComponent},
     { path: "form", component: CategoryFormComponent},
-    // { path: "form/:id", component: PersonalsFormComponent},
+    { path: "form/:id", component: CategoryFormComponent},
     { path: "", redirectTo: "/personal-category/list", pathMatch: "full"}
   
   ]}

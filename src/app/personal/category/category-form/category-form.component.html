@@ -1,1 +1,57 @@
-<p>category-form works!</p>
+<div class="container">
+    <div *ngIf="!category.id">
+        <h1 class="mt-4">Adicionar categoria</h1>        
+    </div>
+    <div *ngIf="category.id">
+        <h1 class="mt-4">Atualizar categoria</h1>        
+    </div>
+
+    <div class="alert alert-secondary" role="alert">
+        Informações da categoria
+    </div>
+
+    <div class="row mt-3">
+        <div class="col-md-12" *ngIf="controlHideMessageSuccess.success">
+            <div class="alert alert-success" role="alert">
+                Categoria cadastrado/atualizada com sucesso.
+            </div>
+        </div>
+
+        <div class="col-md-12" *ngFor="let error of errors">
+            <div class="alert alert-danger" role="alert">
+                {{error.error}}
+            </div>
+        </div>
+    </div>
+
+    <form #clientsForm="ngForm" (ngSubmit)="onSubmit()" method="post">
+        <div class="row mb-3" >
+            <div class="col-md-12">
+                <label for="" class="form-label">Nome: *</label>
+                <input type="text" class="form-control" [(ngModel)]="category.name" name="name">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                <div class="save" *ngIf="!category.id">
+                    <button type="button" class="btn btn-danger me-2" (click)="cancelCreateCategories()">
+                        <i class="fas fa-ban"></i> Cancelar
+                    </button>
+                    <button type="submit" class="btn btn-success" >
+                        <i class="fa fa-save"></i> Salvar
+                    </button>
+                </div>
+                <div class="update" *ngIf="category.id">
+                    <button type="button" class="btn btn-danger me-2" (click)="cancelCreateCategories()">
+                        <i class="fa fa-arrow-left"></i> Voltar
+                    </button>
+                    <button type="submit" class="btn btn-success" >
+                        <i class="fas fa-sync"></i> Atualizar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+

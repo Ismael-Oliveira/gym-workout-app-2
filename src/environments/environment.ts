@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  apiURLBase: "https://gym-workout-tcc.herokuapp.com",
+  // apiURLBase: "https://gym-workout-tcc.herokuapp.com",
+  apiURLBase: "http://localhost:8081",
   clientId: "my-gym-workout-app",
   clientSecret: "@321",
   getTokenURL: "/oauth/token"
