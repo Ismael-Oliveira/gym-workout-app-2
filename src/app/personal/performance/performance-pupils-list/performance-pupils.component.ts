@@ -7,10 +7,10 @@ import { ClientsService } from 'src/app/services/clients.service';
 
 @Component({
   selector: 'app-pupils',
-  templateUrl: './pupils.component.html',
-  styleUrls: ['./pupils.component.css']
+  templateUrl: './performance-pupils.component.html',
+  styleUrls: ['./performance-pupils.component.css']
 })
-export class PupilsComponent implements OnInit {
+export class PerformancePupilsComponent implements OnInit {
 
   clients: Client[] = [];
   errorMessageDeleteClient: String = "";

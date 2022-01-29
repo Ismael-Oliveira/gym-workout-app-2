@@ -25,15 +25,23 @@
         </div>
     </div>
 
-    <form #clientsForm="ngForm" (ngSubmit)="onSubmit()" method="post">
+    <form #clientsForm="ngForm" (ngSubmit)="onSubmit(clientsForm)" method="post">
         <div class="row mb-3" >
             <div class="col-md-6">
-                <label for="" class="form-label">Nome: *</label>
-                <input type="text" class="form-control" [(ngModel)]="exercise.nameExercise" name="nameExercise">
+                <div class="form-group">
+                    <label for="" class="form-label">Nome: *</label>
+                    <input type="text" class="form-control" [(ngModel)]="exercise.nameExercise"
+                        name="nameExercise" required="required"
+                        pattern="[a-zA-Z\s]+$" #nome="ngModel">
+                </div>
             </div>
             <div class="col-md-6">
-                <label for="" class="form-label">Nº de séries</label>
-                <input type="text" class="form-control" [(ngModel)]="exercise.series" name="series">
+                <div class="form-group">
+                    <label for="" class="form-label">Nº de séries</label>
+                    <input type="text" class="form-control" [(ngModel)]="exercise.series"
+                        name="series" required="required"
+                        pattern="[0-9]+$">
+                </div>
             </div>
         </div>
 
@@ -52,9 +60,9 @@
             <div class="col-md-3">
                 <label for="" class="form-label">Categorias:</label>
                 <select class="form-control" [ngModelOptions]="{standalone: true}"
-                    [(ngModel)]="category.name">
-                    <option value="" [disabled]="true">Vazio</option>
-                    <option *ngFor="let cat of categories" value="{{cat.name}}">{{cat.name}}</option>
+                    [(ngModel)]="category">
+                    <option [disabled]="true" [selected]="true">Vazio...</option>
+                    <option *ngFor="let cat of categories" [ngValue]="cat">{{cat.name}}</option>
                 </select>
             </div>
         </div>
@@ -73,7 +81,7 @@
                     <button type="button" class="btn btn-danger me-2" (click)="cancelCreateExercise()">
                         <i class="fa fa-arrow-left"></i> Voltar
                     </button>
-                    <button type="submit" class="btn btn-success" >
+                    <button type="submit" class="btn btn-success" [disabled]="!clientsForm.valid">
                         <i class="fa fa-save"></i> Salvar
                     </button>
                 </div>

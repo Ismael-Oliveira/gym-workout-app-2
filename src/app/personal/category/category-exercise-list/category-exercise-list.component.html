@@ -1,39 +1,41 @@
 <div class="container">
-    <h1 class="mt-4">Lista de Alunos</h1>
+    <h1 class="mt-4">Categorias de exercícios</h1>
     <div class="alert alert-secondary" role="alert">
         Consulta
     </div>
 
     <div class="card mb-4">
+        <div class="card-header">
+            <div class="row">
+                <div class="col-md-2">
+                    <button class="btn btn-warning" (click)="newCategory()">
+                        <i class="fas fa-plus me-1"></i>
+                        Novo
+                    </button>
+                </div>
+            </div>
+        </div>
         <div class="card-body">
             <table class="table table-bordered table-striped table-hover pt-3 pb-3" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
                 <thead>
                 <tr>
-                    <th>Nome</th>
-                    <th>Matrícula</th>
+                    <th *ngFor="let category of categories">Categoria {{category.name}}</th>
                     <th></th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr *ngFor="let user of clients">
-                    <td>{{ user.name }}</td>
-                    <td>{{ user.birthDate }}</td>
-                    <th>
+                <tr *ngFor="let category of categories">
+                    <td>{{ category.planning.nameExercise }}</td>
+                    <td>
                         <div class="d-grid gap-1 d-md-flex justify-content-md-center">
-                            <button class="btn btn-primary" routerLink="/trainers/form/{{user.id}}">
-                                <i class="fas fa-plus-square"></i>
-                            </button>
-                            <button class="btn btn-primary" routerLink="/trainers/spreadsheet-form/{{user.id}}">
-                                <i class="fas fa-file-alt"></i>
-                            </button>
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" routerLink="/trainers/edit/{{user.id}}">
-                                <i class="fas fa-edit"></i>
-                            </button>
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" routerLink="/trainers/view/{{user.id}}">
+                            <button class="btn btn-primary" routerLink="/personal-category/form/{{category.id}}">
                                 <i class="fas fa-eye"></i>
                             </button>
+                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal" (click)="prepareToDeleteCategory(category)">
+                                <i class="far fa-trash-alt"></i>
+                            </button>
                         </div>
-                    </th>
+                    </td>
                 </tr>
                 </tbody>
             </table>
@@ -46,12 +48,12 @@
                     <h4 class="modal-title">Confirmação</h4>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body" *ngIf="selectedClient">
-                    Deseja excluir o(a) aluno(a) {{selectedClient.name}}.
+                <div class="modal-body" *ngIf="selectedCategory">
+                    Deseja excluir a categoria {{selectedCategory.name}}.
                 </div>
                 <div class="modal-footer">
                     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                        <button type="button" class="btn btn-success me-md-2" data-bs-dismiss="modal" (click)="deleteClient(selectedClient.id)">Confirma</button>
+                        <button type="button" class="btn btn-success me-md-2" data-bs-dismiss="modal" (click)="deleteCategory(selectedCategory.id)">Confirma</button>
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
                     </div>
                 </div>

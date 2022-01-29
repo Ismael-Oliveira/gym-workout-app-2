@@ -4,4 +4,6 @@ export class Client {
     birthDate: String;
     typeUser: string;
     email: string;
+    card: Array<any>;
+    performances: Array<Object>;
 }

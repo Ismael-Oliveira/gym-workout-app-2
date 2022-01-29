@@ -1,0 +1,118 @@
+<div class="container">
+    <div>
+        <h1 class="mt-4">Cadastrar métricas do aluno</h1>        
+    </div>
+
+    <div class="alert alert-secondary" role="alert">
+        Informações
+    </div>
+
+    <div class="row mt-3">
+        <div class="col-md-12" *ngIf="controlHideMessageSuccess.success">
+            <div class="alert alert-success" role="alert">
+                Métricas adicionada/atualizada com sucesso.
+            </div>
+        </div>
+
+        <!-- <div class="col-md-12" *ngFor="let error of errors">
+            <div class="alert alert-danger" role="alert">
+                {{error.error}}
+            </div>
+        </div> -->
+    </div>
+
+    <div class="row mb-3" >
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="" class="form-label">Nome:</label>
+                <input type="text" class="form-control" [ngModel]="client.name">
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="" class="form-label">-</label>
+                <div class="d-grid">
+                    <button type="button" class="btn btn-primary" (click)="cancelCreateExercise()">
+                        <i class="far fa-file-alt"></i> Cadastrar Planilha
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mb-3" >
+        <div class="col-md-12">
+            <div class="alert alert-secondary" role="alert">
+                Informações/última métrica cadastrada
+            </div>
+        </div>
+    </div>
+
+    <form #performancesForm="ngForm" (ngSubmit)="onSubmit(performancesForm)" method="post">
+
+        <input type="hidden" name="idUser" [(ngModel)]="client.id">
+        <div class="row mb-3" >
+            <div class="col-md-4">
+                <div class="form-group" [ngClass]="{'avoid-clicks ': client.performances[0].id}">
+                    <label for="" class="form-label">Altura</label>
+                    <input type="text" class="form-control" [(ngModel)]="client.performances[0].height" name="height">
+                </div>
+                <div class="form-group mt-3">
+                    <label for="" class="form-label">Peso</label>
+                    <input type="text" class="form-control" [(ngModel)]="client.performances[0].weight" name="weight">
+                </div>
+                <div class="form-group mt-3">
+                    <label for="" class="form-label">Idade</label>
+                    <input type="text" class="form-control" [(ngModel)]="client.performances[0].ageOld" name="age">
+                </div>
+            </div>
+            <div class="col-md-2"></div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="descricao" class="form-label">Descrição</label>
+                    <textarea class="form-control" id="descricao" rows="4" [(ngModel)]="client.performances[0].observation" name="observation"></textarea>
+                </div>
+                <fieldset class="form-group">
+                    <div class="row mt-5" [ngClass]="{'avoid-clicks ': client.performances[0].id}">
+                        <legend class="col-form-label col-sm-2">Gênero: </legend>
+                        <div class="col-sm-10">
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio" name="sex" id="male" [value]="1" [(ngModel)]="client.performances[0].sex" required> 
+                            <label class="form-check-label" for="male">
+                              Masculino
+                            </label>
+                          </div>
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio" name="sex" id="female" [value]="2" [(ngModel)]="client.performances[0].sex" required>
+                            <label class="form-check-label" for="female">
+                              Feminino
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                </fieldset>
+            </div>           
+        </div>
+
+        <div class="row">
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                <div class="update" *ngIf="client.performances[0].id > 0">
+                    <button type="button" class="btn btn-danger me-2" (click)="cancelCreatePerformance()">
+                        <i class="fa fa-arrow-left"></i> Voltar
+                    </button>
+                    <button type="submit" class="btn btn-success" >
+                        <i class="fas fa-sync"></i> Nova Métrica
+                    </button>
+                </div>
+                <div class="add" *ngIf="client.performances[0].id == 0">
+                    <button type="button" class="btn btn-danger me-2" (click)="cancelCreatePerformance()">
+                        <i class="fa fa-arrow-left"></i> Voltar
+                    </button>
+                    <button type="submit" class="btn btn-success" >
+                        <i class="fa fa-save"></i> Salvar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+

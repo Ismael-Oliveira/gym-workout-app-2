@@ -17,7 +17,7 @@ import { EquipmentsModule } from './admin/equipments/equipments.module';
 import { PersonalsModule } from './admin/personals/personals.module';
 import { PersonalsService } from './services/personals.service';
 import { PupilsModule } from './client/pupils.module';
-import { WorkPupilsModule } from './personal/pupils/workPupils.module';
+import { WorkPupilsModule } from './personal/performance/performancePupils.module';
 import { PersonalEquipmentsModule } from './personal/equipments/personal-equipments.module';
 import { CategoryModule } from './personal/category/category.module';
 import { WorkoutModule } from './personal/workout/workout.module';
