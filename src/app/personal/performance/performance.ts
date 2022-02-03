@@ -2,7 +2,7 @@ export class PerformancePupil {
     id: number;
     height: number;
     weight: number;
-    age: number;
+    ageOld: number;
     sex: number;
     idUser: number;
 }

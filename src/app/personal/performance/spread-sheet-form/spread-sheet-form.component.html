@@ -1,1 +1,63 @@
-<p>spread-sheet-form works!</p>
+<div class="container">
+    <div class="alert alert-secondary mt-2" role="alert">
+        Planejar Planilha do aluno john tal.
+    </div>
+
+    <form #clientsForm="ngForm" (ngSubmit)="onSubmit(spreadForm)" method="post">
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col">
+                        <label for="" class="form-label">Selecionar uma Categoria:</label>
+                        <select class="form-control" (change)="selectedCategory($event)">
+                            <option [disabled]="true" [selected]="true">Vazio...</option>
+                            <option *ngFor="let cat of categories" [value]="cat.id">{{cat.name}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col mt-5">
+                        <div class="card bg-primary text-white mb-4">
+                            <div class="card-body">Adicionar exercícios da categoria: {{listExercisesByCategory[0].name}}</div>
+                            <div class="card-footer align-items-center">
+                                <div class="list-group">
+                                    <label class="list-group-item" *ngFor="let exercise of listExercisesByCategory[0].planning">
+                                      <input class="form-check-input me-1" type="checkbox" value="">
+                                      {{exercise.nameExercise}}
+                                    </label>
+                                  </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col">
+                        <label for="" class="form-label">Estado atual da planilha:</label>
+                        <div class="card bg-primary text-white mb-4">
+                            <div class="card-body">Planilha do aluno</div>
+                            <div class="card-footer d-flex align-items-center justify-content-between">
+                                <a class="small text-white stretched-link" href="#">Exercicio 1</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                <div>
+                    <button type="button" class="btn btn-danger me-2" (click)="backToList()">
+                        <i class="fa fa-arrow-left"></i> Voltar
+                    </button>
+                    <button type="submit" class="btn btn-success" [disabled]="">
+                        <i class="fa fa-save"></i> Salvar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+

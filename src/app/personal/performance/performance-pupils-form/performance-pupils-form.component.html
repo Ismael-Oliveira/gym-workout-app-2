@@ -13,12 +13,6 @@
                 Métricas adicionada/atualizada com sucesso.
             </div>
         </div>
-
-        <!-- <div class="col-md-12" *ngFor="let error of errors">
-            <div class="alert alert-danger" role="alert">
-                {{error.error}}
-            </div>
-        </div> -->
     </div>
 
     <div class="row mb-3" >
@@ -32,7 +26,7 @@
             <div class="form-group">
                 <label for="" class="form-label">-</label>
                 <div class="d-grid">
-                    <button type="button" class="btn btn-primary" (click)="cancelCreateExercise()">
+                    <button type="button" class="btn btn-primary" routerLink="/trainers/spreadsheet-form/{{client.id}}">
                         <i class="far fa-file-alt"></i> Cadastrar Planilha
                     </button>
                 </div>

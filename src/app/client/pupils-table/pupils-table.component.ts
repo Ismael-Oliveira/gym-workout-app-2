@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PupilsTableComponent implements OnInit {
 
+  
+
   constructor() { }
 
   ngOnInit() {
