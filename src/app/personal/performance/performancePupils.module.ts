@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 import { PerformancePupilsComponent } from 'src/app/personal/performance/performance-pupils-list/performance-pupils.component';
 import { PerformancePupilsFormComponent } from './performance-pupils-form/performance-pupils-form.component';
@@ -21,6 +22,7 @@ import { PerformancePupilsViewComponent } from './performance-pupils-view/perfor
     CommonModule,
     FormsModule,
     DataTablesModule,
+    MatTooltipModule,
     WorkPupilsRoutingModule
   ],
   exports: [

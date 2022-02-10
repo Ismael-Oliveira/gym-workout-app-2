@@ -16,13 +16,14 @@
                     </a>
                     <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                         <nav class="sb-sidenav-menu-nested nav">
+                            <a *ngIf="roleAdministrator" class="nav-link" routerLink="/dashboard/dash">Dashboard</a>
                             <a *ngIf="roleAdministrator" class="nav-link" routerLink="/clients/list">Clientes</a>
                             <a *ngIf="roleAdministrator" class="nav-link" routerLink="/personals/list">Personals</a>
-                            <a class="nav-link" href="/equipments/list">Equipamentos</a>
+                            <a class="nav-link" routerLink="/equipments/list">Equipamentos</a>
                         </nav>
                     </div>
                 </div>
-                <div *ngIf="roleAdministrator">
+                <div>
                     <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayoutsClient" aria-expanded="false" aria-controls="collapseLayouts">
                         <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                         Area do aluno
@@ -30,8 +31,8 @@
                     </a>
                     <div class="collapse" id="collapseLayoutsClient" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                         <nav class="sb-sidenav-menu-nested nav">
-                            <a *ngIf="roleAdministrator" class="nav-link" routerLink="/pupils/home">Lotação</a>
-                            <a *ngIf="roleAdministrator" class="nav-link" routerLink="/pupils/table">Planilha</a>
+                            <a class="nav-link" routerLink="/pupils/home">IMC</a>
+                            <a class="nav-link" routerLink="/pupils/table">Planilha</a>
                         </nav>
                     </div>
                 </div>   

@@ -1,4 +1,34 @@
-<h1 class="mt-4">Dashboard</h1>
+<h1 class="mt-4">Movimento desta {{ today }}</h1>
 <ol class="breadcrumb mb-4">
-    <li class="breadcrumb-item active">Dashboard</li>
-</ol>  
+    <li class="breadcrumb-item active">Lotação máxima de 100 alunos</li>
+</ol>
+
+<div class="container-fluid">
+    <div class="row align-items-center">
+        <div class="col alert alert-secondary">
+            <h3 class="text-center font-weight-light my-4">Total de alunos presentes agora</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="text-center size-capacity" >
+            <span [className]="selectedColor()">{{capacity}}</span>
+        </div>
+    </div>
+    <div class="row align-items-center">
+        <div class="col">
+            <label for="">Alta Lotação</label>
+            <div class="col alert alert-danger">
+            </div>
+        </div>
+        <div class="col">
+            <label for="">Média Lotação</label>
+            <div class="col alert alert-success">
+            </div>
+        </div>
+        <div class="col">
+            <label for="">Baixa Lotação</label>
+            <div class="col alert alert-info">
+            </div>
+        </div>
+    </div>
+</div>

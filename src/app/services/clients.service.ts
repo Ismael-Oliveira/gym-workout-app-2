@@ -21,6 +21,10 @@ export class ClientsService {
     return this.http.put<Client>(`${this.apiURL}/${client.id}`, client);
   }
 
+  updateSpreadSheet(client: Client) : Observable<Client> {
+    return this.http.put<Client>(`${this.apiURL}/spread-sheet/${client.id}`, client);
+  }
+
   getClients() : Observable<Client[]> {
     return this.http.get<Client[]>(this.apiURL);
   }

@@ -28,12 +28,12 @@
                     <td>{{ category.name }}</td>
                     <th>
                         <div class="d-grid gap-1 d-md-flex justify-content-md-center">
-                            <button class="btn btn-primary" routerLink="/personal-category/category-exercise-list">
+                            <button class="btn btn-primary" routerLink="/personal-category/category-exercise-list/{{category.id}}">
                                 <i class="fas fa-eye"></i>
                             </button>
-                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal" (click)="prepareToDeleteCategory(category)">
+                            <!-- <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal" (click)="prepareToDeleteCategory(category)">
                                 <i class="far fa-trash-alt"></i>
-                            </button>
+                            </button> -->
                         </div>
                     </th>
                 </tr>

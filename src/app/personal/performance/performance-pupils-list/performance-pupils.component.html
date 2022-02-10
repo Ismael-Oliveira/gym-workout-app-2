@@ -20,13 +20,25 @@
                     <td>{{ user.birthDate }}</td>
                     <th>
                         <div class="d-grid gap-1 d-md-flex justify-content-md-center">
-                            <button class="btn btn-primary" routerLink="/trainers/form/{{user.id}}" aria-label="cadastrar/editar">
-                                <abbr title="Cadastrar/editar"><i class="fas fa-plus-square"></i></abbr>
+                            <button class="btn btn-primary" routerLink="/trainers/form/{{user.id}}"
+                                mat-raised-button
+                                matTooltip="cadastrar performance"
+                                matTooltipPosition="below"
+                                aria-label="cadastrar performance">
+                                <i class="fas fa-plus-square"></i>
                             </button>
-                            <button class="btn btn-primary" routerLink="/trainers/spreadsheet-form/{{user.id}}">
+                            <button class="btn btn-primary" routerLink="/trainers/spreadsheet-form/{{user.id}}"
+                                mat-raised-button
+                                matTooltip="cadastrar planilha"
+                                matTooltipPosition="below"
+                                >
                                 <i class="fas fa-file-alt"></i>
                             </button>
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" routerLink="/trainers/view/{{user.id}}">
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" routerLink="/trainers/view/{{user.id}}"
+                                mat-raised-button
+                                matTooltip="visualizar histórico"
+                                matTooltipPosition="below"
+                                >
                                 <i class="fas fa-eye"></i>
                             </button>
                         </div>

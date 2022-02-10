@@ -4,7 +4,7 @@ import { Observable, Subject } from 'rxjs';
 import { Client } from 'src/app/admin/clients/clients';
 import { Constants } from 'src/app/constants';
 import { ClientsService } from 'src/app/services/clients.service';
-import { PerformancePupil } from '../performance';
+import { Performance } from '../performance';
 
 @Component({
   selector: 'app-pupils-view',
@@ -13,7 +13,7 @@ import { PerformancePupil } from '../performance';
 })
 export class PerformancePupilsViewComponent implements OnInit {
 
-  performancePupil: PerformancePupil;
+  performancePupil: Performance;
   client: Client;
   id: number;
   errors: [];
@@ -21,7 +21,7 @@ export class PerformancePupilsViewComponent implements OnInit {
   dtTrigger: Subject<any> = new Subject<any>();
 
   constructor(private clienteService: ClientsService, private router: Router, private activatedRoute: ActivatedRoute) { 
-    this.performancePupil = new PerformancePupil();
+    this.performancePupil = new Performance();
     this.performancePupil.id = 0;
     this.dtOptions = Constants.CONFIG_DATA_TABLES;
   }
@@ -40,7 +40,7 @@ export class PerformancePupilsViewComponent implements OnInit {
                   // initiate our data table
                   this.dtTrigger.next(true);
               } else {
-                this.client.performances[0] = {id: 0}; 
+                this.client.performances[0] = this.performancePupil; 
               }
             },
             error: (errorResponse) => {
@@ -68,7 +68,7 @@ export class PerformancePupilsViewComponent implements OnInit {
     performances.sort((a, b) => b.id - a.id)
   }
 
-  public calculatorTGC(performance: PerformancePupil) {
+  public calculatorTGC(performance: Performance) {
     let bmi = performance.weight/(Math.pow(performance.height,2));
     if (performance.sex === 1) {
       return (1.20 * bmi + 0.23*performance.ageOld - 16.2).toFixed(2);
@@ -77,7 +77,7 @@ export class PerformancePupilsViewComponent implements OnInit {
     }
   }
 
-  public calculatorBMI(performance: PerformancePupil) {
+  public calculatorBMI(performance: Performance) {
     return (performance.weight/(Math.pow(performance.height,2))).toFixed(2);
   }
 

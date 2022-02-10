@@ -1,21 +1,61 @@
-<div class="conatiner-fluid">
-    <div class="row align-items-center">
-        <div class="col">
-            <h3 class="text-center font-weight-light my-4">Total de alunos presentes agora</h3>
-        </div>
-    </div>
-    <div class="row">
-        <span class="text-center">89</span>
-    </div>
-    <div class="row align-items-center">
-        <div class="col">
-            <label for="">Alta Lotação</label>
-        </div>
-        <div class="col">
-            <label for="">Média Lotação</label>
-        </div>
-        <div class="col">
-            <label for="">Baixa Lotação</label>
+<div class="container-fluid">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9">
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <i class="fas fa-chart-area me-1"></i>
+                        IMC (Índice de massa corporal)
+                    </div>
+                    <div class="card-body">
+                        <div class="chart-wrapper" *ngIf="barChartData.length > 0">
+                            <canvas height="80" baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions"
+                                [plugins]="barChartPlugins" [legend]="barChartLegend" [chartType]="barChartType">
+                            </canvas>
+                        </div>
+                        <div class="card-footer small text-muted"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card-body">
+                    <table class="table table-bordered table-striped table-hover pt-3 pb-3">
+                        <thead>
+                        <tr>
+                            <th>Categoria</th>
+                            <th>Faixa IMC - kg/m<sup>2</sup> </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>Magreza grave</td>
+                            <td>< 18.5</td>
+                        </tr>
+                        <tr>
+                            <td>Normal</td>
+                            <td>18.5 - 25</td>
+                        </tr>
+                        <tr>
+                            <td>Sobrepeso</td>
+                            <td>25 - 30</td>
+                        </tr>
+                        <tr>
+                            <td>Sobrepeso classe 1 </td>
+                            <td>30 - 35</td>
+                        </tr>
+                        <tr>
+                            <td>Sobrepeso classe 2 </td>
+                            <td>35 - 40</td>
+                        </tr>
+                        <tr>
+                            <td>Sobrepeso classe 3 </td>
+                            <td> > 40</td>
+                        </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>            
         </div>
     </div>
 </div>

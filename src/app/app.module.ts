@@ -2,7 +2,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { TemplateModule } from './template/template.module';
+import { ChartsModule } from 'ng2-charts';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -21,17 +23,24 @@ import { WorkPupilsModule } from './personal/performance/performancePupils.modul
 import { PersonalEquipmentsModule } from './personal/equipments/personal-equipments.module';
 import { CategoryModule } from './personal/category/category.module';
 import { WorkoutModule } from './personal/workout/workout.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DashboardComponent } from './admin/dashboard/dashboard.component';
+import { DashboardModule } from './admin/dashboard/dashboard.module';
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     LoginComponent,
-    LayoutComponent
+    LayoutComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
+    BrowserAnimationsModule,
     FormsModule,
+    ChartsModule,
+    MatTooltipModule,
     AppRoutingModule,
     TemplateModule,
     ClientsModule,
@@ -41,7 +50,8 @@ import { WorkoutModule } from './personal/workout/workout.module';
     WorkPupilsModule,
     PersonalEquipmentsModule,
     CategoryModule,
-    WorkoutModule
+    WorkoutModule,
+    DashboardModule
   ],
   providers: [
     ClientsService,

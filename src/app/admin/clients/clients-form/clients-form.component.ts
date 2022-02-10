@@ -30,7 +30,7 @@ export class ClientsFormComponent implements OnInit {
     params.subscribe({
       next: (urlParams) => {
         this.id = urlParams['id'];
-        if(this.id) {
+        if (this.id) {
           this.service.getClient(this.id).subscribe({
             next: (response) => {
               this.client = response;
@@ -45,54 +45,54 @@ export class ClientsFormComponent implements OnInit {
   }
 
   onSubmit() {
-    if(this.client.id) {
+    if (this.client.id) {
       this.updateClient();
     } else {
       this.saveClient();
     }
   }
-  
+
   cancelCreateClients() {
     this.router.navigate(["/clients/list"]);
   }
 
   private saveClient() {
     this.service.save(this.client)
-          .subscribe({
-            next: (response) => {
-              this.controlHideMessageSuccess.success = true;
-              this.errors = [];
-              this.client = response;
-              this.util.hideMessageSuccess(3000, this.controlHideMessageSuccess, () => {
-                this.ngOnInit();
-              });
-            },
-            error: (errorResponse) => {
-              this.controlHideMessageSuccess.success = false;
-              if (errorResponse.error.status == 400) {
-                this.errors.push({error: errorResponse.error.message});
-                return;
-              }
-              this.errors = errorResponse.error;
-            }
+      .subscribe({
+        next: (response) => {
+          this.controlHideMessageSuccess.success = true;
+          this.errors = [];
+          this.client = response;
+          this.util.hideMessageSuccess(3000, this.controlHideMessageSuccess, () => {
+            this.ngOnInit();
           });
+        },
+        error: (errorResponse) => {
+          this.controlHideMessageSuccess.success = false;
+          if (errorResponse.error.status == 400) {
+            this.errors.push({ error: errorResponse.error.message });
+            return;
+          }
+          this.errors = errorResponse.error;
+        }
+      });
   }
 
   private updateClient() {
     this.service.update(this.client)
-          .subscribe({
-            next: (response) => {
-              this.controlHideMessageSuccess.success = true;
-              this.errors = [];
-              this.client = response;
-              this.util.hideMessageSuccess(3000, this.controlHideMessageSuccess, () => {
-                this.ngOnInit();
-              });            
-            },
-            error: (errorResponse) => {
-              this.controlHideMessageSuccess.success = false;
-              this.errors = errorResponse.error;
-            }
+      .subscribe({
+        next: (response) => {
+          this.controlHideMessageSuccess.success = true;
+          this.errors = [];
+          this.client = response;
+          this.util.hideMessageSuccess(3000, this.controlHideMessageSuccess, () => {
+            this.ngOnInit();
           });
+        },
+        error: (errorResponse) => {
+          this.controlHideMessageSuccess.success = false;
+          this.errors = errorResponse.error;
+        }
+      });
   }
 }

@@ -1,0 +1,33 @@
+<div class="container-fluid">
+    <div class="row align-items-center mt-2">
+        <div class="col alert alert-secondary">
+            <h3 class="text-center font-weight-light my-4">Gráfico de alunos cadastrados por ano.</h3>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <i class="fas fa-chart-area me-1"></i>
+                        Pessoas x Ano
+                    </div>
+                    <div class="card-body">
+                        <div class="chart-wrapper">
+                            <canvas height="100" baseChart 
+                            [datasets]="lineChartData" 
+                            [labels]="lineChartLabels" 
+                            [options]="lineChartOptions"
+                            [colors]="lineChartColors" 
+                            [legend]="lineChartLegend" 
+                            [chartType]="lineChartType" 
+                            [plugins]="lineChartPlugins">
+                        </canvas>
+                        </div>
+                        <div class="card-footer small text-muted"></div>
+                    </div>
+                </div>
+            </div>          
+        </div>
+    </div>
+</div>

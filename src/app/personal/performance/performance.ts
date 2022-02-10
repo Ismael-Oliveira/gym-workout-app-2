@@ -1,4 +1,4 @@
-export class PerformancePupil {
+export class Performance {
     id: number;
     height: number;
     weight: number;

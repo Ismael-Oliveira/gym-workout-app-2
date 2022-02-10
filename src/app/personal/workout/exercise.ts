@@ -7,4 +7,5 @@ export class Exercise {
     weight: number;
     series: number;
     category: Category;
+    selectedExercise: boolean;
 }

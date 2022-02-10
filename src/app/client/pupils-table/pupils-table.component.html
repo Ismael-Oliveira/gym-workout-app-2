@@ -6,29 +6,29 @@
     <div class="row mb-3">
         <div class="card-header">
             <div class="row">
-                <div class="col-md-12">
-                    Treino a ser seguido
+                <div class="col-md-12 d-flex justify-content-center">
+                   <span>Treino a ser seguido</span> 
                 </div>
             </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6" *ngFor="let category of spreadSheetPupil">
             <div class="card mb-4">
                 <div class="card-body">
                     <table class="table table-bordered table-striped table-hover pt-3 pb-3">
                         <thead>
                         <tr>
-                            <th>Categoria</th>
-                            <th>Série</th>
+                            <th>Categoria {{category.name}}</th>
+                            <th>Séries</th>
                             <th>Repetições</th>
                             <th>Carga</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr *ngFor="let user of clients">
-                            <td>{{ user.id }}</td>
-                            <td>{{ user.name }}</td>
-                            <td>{{ user.birthDate }}</td>
-                            <td>{{ user.email }}</td>
+                        <tr *ngFor="let planning of category.planning">
+                            <td>{{ planning.nameExercise }}</td>
+                            <td>{{ planning.series }}</td>
+                            <td>{{ planning.loop }}</td>
+                            <td>{{ planning.weight }}</td>
                         </tr>
                         </tbody>
                     </table>
@@ -42,9 +42,6 @@
             <div>
                 <button type="button" class="btn btn-danger me-2" (click)="backToList()">
                     <i class="fa fa-arrow-left"></i> Voltar
-                </button>
-                <button type="submit" class="btn btn-success" [disabled]="">
-                    <i class="fa fa-save"></i> Salvar
                 </button>
             </div>
         </div>

@@ -10,7 +10,7 @@ const routes: Routes = [
     
     { path: "list", component: CategoryListComponent},
     { path: "form", component: CategoryFormComponent},
-    { path: "category-exercise-list", component: CategoryExerciseListComponent},
+    { path: "category-exercise-list/:id", component: CategoryExerciseListComponent},
     { path: "", redirectTo: "/personal-category/list", pathMatch: "full"}
   
   ]}

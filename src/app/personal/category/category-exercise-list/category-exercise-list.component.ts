@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { Subject } from 'rxjs';
-import { Constants } from 'src/app/constants';
+import { ActivatedRoute, Params, Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { CategoriesService } from 'src/app/services/categories.service';
 import { Category } from '../category';
 
@@ -12,50 +11,32 @@ import { Category } from '../category';
 })
 export class CategoryExerciseListComponent implements OnInit {
 
-  categories: Category[] = [];
-  errorMessageDeleteCategory: String = "";
-  selectedCategory: Category;
-  dtOptions: DataTables.Settings = {};
-  dtTrigger: Subject<any> = new Subject<any>();
+  category: Category;
+  errors: Object[] = [];
+  id: number;
 
-  constructor(private service: CategoriesService, private router: Router) { }
+  constructor(private service: CategoriesService, private router: Router, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
-    this.getAllCategories();
-    this.dtOptions = Constants.CONFIG_DATA_TABLES;
-  }
-
-  ngOnDestroy(): void {
-    this.dtTrigger.unsubscribe();
-  }
-  
-  newCategory() {
-    this.router.navigate(["/personal-category/form"]);
-  }
-
-  getAllCategories(): void {
-    this.service.getCategories()
-          .subscribe((response: any) => {
-            this.categories = response.content;
-            // initiate our data table
-            this.dtTrigger.next(true);
-          });
-  }
-
-  deleteCategory(id) {
-    this.service.deleteCategory(id)
-          .subscribe({
-            next: () => {
-              this.dtTrigger.unsubscribe();
-              this.ngOnInit();
+    let params: Observable<Params> = this.activatedRoute.params;
+    params.subscribe({
+      next: (urlParams) => {
+        this.id = urlParams['id'];
+        if(this.id) {
+          this.service.getCategory(this.id).subscribe({
+            next: (response) => {
+              this.category = response;
             },
-            error: () => {
-              this.errorMessageDeleteCategory = "Erro ao tentar deletar esta categoria.";
+            error: (errorResponse) => {
+              this.errors = errorResponse.error;
             }
           });
+        }
+      }
+    })
   }
-
-  prepareToDeleteCategory(category) {
-    this.selectedCategory = category;
+  
+  backToList() {
+    this.router.navigate(["/personal-category/list"]);
   }
 }
