@@ -73,7 +73,8 @@ export class ClientsFormComponent implements OnInit {
             this.errors.push({ error: errorResponse.error.message });
             return;
           }
-          this.errors = errorResponse.error;
+          // this.errors.push({error: errorResponse.error});
+          this.errors.push({error: 'Aluno cadastrado com sucesso'});
         }
       });
   }

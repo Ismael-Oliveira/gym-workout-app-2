@@ -12,8 +12,7 @@ import { Client } from '../clients/clients';
 })
 export class DashboardComponent implements OnInit {
 
-  lineChartData: ChartDataSets[] = [
-  ];
+  lineChartData: ChartDataSets[] = [];
   lineChartLabels: Label[] = ['2016', '2017', '2018', '2020', '2021', '2022', '2023'];
   lineChartOptions = {
     responsive: true,

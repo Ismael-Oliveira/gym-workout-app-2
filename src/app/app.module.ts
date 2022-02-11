@@ -24,15 +24,13 @@ import { PersonalEquipmentsModule } from './personal/equipments/personal-equipme
 import { CategoryModule } from './personal/category/category.module';
 import { WorkoutModule } from './personal/workout/workout.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { DashboardModule } from './admin/dashboard/dashboard.module';
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     LoginComponent,
-    LayoutComponent,
-    DashboardComponent
+    LayoutComponent
   ],
   imports: [
     BrowserModule,

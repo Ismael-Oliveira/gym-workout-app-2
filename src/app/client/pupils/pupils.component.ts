@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ChartDataSets, ChartOptions, ChartType } from 'chart.js';
-import { Color, Label } from 'ng2-charts';
+import { Label } from 'ng2-charts';
 import { Client } from 'src/app/admin/clients/clients';
 import { Performance } from 'src/app/personal/performance/performance';
 import { AuthService } from 'src/app/services/auth.service';
