@@ -27,6 +27,7 @@ export class PerformancePupilsFormComponent implements OnInit {
     weight: 0,
     ageOld: 0,
     sex: 0,
+    observation: '',
     idUser: 0
   }
 

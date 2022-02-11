@@ -4,5 +4,6 @@ export class Performance {
     weight: number;
     ageOld: number;
     sex: number;
+    observation: string;
     idUser: number;
 }
