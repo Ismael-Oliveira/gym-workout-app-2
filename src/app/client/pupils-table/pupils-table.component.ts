@@ -24,16 +24,18 @@ export class PupilsTableComponent implements OnInit {
   }
   
   ngOnInit() {
-    let idUser = this.authService.getUserInfoAuthenticated().user_name.split(" ")[1];
-    this.clientService.getClient(idUser).subscribe({
-      next: (response) => {
-        this.client = response;
-        this.spreadSheetPupil = this.client.card.categories;
-      },
-      error: (errorResponse) => {
-        this.errors = errorResponse.error;
-      }
-    });
+    if (this.authService.getUserInfoAuthenticated().authorities !== undefined) {
+      let idUser = this.authService.getUserInfoAuthenticated().user_name.split(" ")[1];
+      this.clientService.getClient(idUser).subscribe({
+        next: (response) => {
+          this.client = response;
+          this.spreadSheetPupil = this.client.card.categories;
+        },
+        error: (errorResponse) => {
+          this.errors = errorResponse.error;
+        }
+      });
+    }
   }
 
   backToList() {

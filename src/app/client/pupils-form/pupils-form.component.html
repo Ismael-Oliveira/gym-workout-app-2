@@ -1,0 +1,63 @@
+<div class="container">
+    <div>
+        <h1 class="mt-4">Realize seu casdastro abaixo</h1>
+    </div>
+
+    <div class="alert alert-secondary" role="alert">
+        Informações pessoais
+    </div>
+
+    <div class="row mt-3">
+        <div class="col-md-12" *ngIf="controlHideMessageSuccess.success">
+            <div class="alert alert-success" role="alert">
+                Aluno cadastrado/atualizado com sucesso.
+            </div>
+        </div>
+
+        <div class="col-md-12" *ngIf="client.id">
+            <div class="alert alert-secondary" role="alert">
+                <h3 class="teext-danger">Guarde seu login e senha em local seguro</h3>
+                <p><span>Seu Login:</span> {{client.email}}</p>
+                <p><span>Sua senha:</span> {{client.password}}</p>
+                <div *ngIf="client.id">
+                    <a class="btn btn-primary" routerLink="/login">Faça seu login agora.</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-12" *ngFor="let error of errors">
+            <div class="alert alert-danger" role="alert">
+                {{error.error}}
+            </div>
+        </div>
+    </div>
+
+    <form #clientsForm="ngForm" (ngSubmit)="onSubmit()" method="post">
+    
+        <div class="row mb-3">
+            <div class="col-6">
+                <label for="" class="form-label">Nome: *</label>
+                <input type="text" class="form-control" [(ngModel)]="client.name" name="name">
+            </div>
+            <div class="col-6">
+                <label for="" class="form-label">Data de aniversário:</label>
+                <input type="date" class="form-control" [(ngModel)]="client.birthDate" name="birthDate">
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-12 mt-2">
+                <label for="" class="form-label">Email: *</label>
+                <input type="email" class="form-control" [(ngModel)]="client.email" name="email">            
+            </div>
+        </div>
+        <div class="row">
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                <div class="save" *ngIf="!client.id">
+                    <button type="submit" class="btn btn-success" >
+                        <i class="fa fa-save"></i> Salvar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

@@ -17,8 +17,10 @@ export class SidebarComponent implements OnInit {
   constructor(private authService: AuthService) { }
 
   ngOnInit() {
-    this.userLogged = this.authService.getUserInfoAuthenticated().user_name.split(" ")[0];
-    this.roleUser = this.authService.getUserInfoAuthenticated().authorities[0];
+    if (this.authService.getUserInfoAuthenticated().authorities !== undefined) {
+      this.userLogged = this.authService.getUserInfoAuthenticated().user_name.split(" ")[0];
+      this.roleUser = this.authService.getUserInfoAuthenticated().authorities[0];
+    }
     this.verifyRoleUser();
   }
 
@@ -34,6 +36,7 @@ export class SidebarComponent implements OnInit {
         this.rolePersonal = true;
         break;
       default:
+        this.userLogged = "Nenhum perfil logado."
         break;
     }
   }
